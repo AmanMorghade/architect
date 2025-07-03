@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in-up {
+      animation: fadeInUp 0.7s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800">
+    <a href="javascript:history.back()" class="absolute top-4 left-4 text-gray-700 hover:text-black flex items-center space-x-1">
+  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+  </svg>
+  <span>Back</span>
+</a>
+
+  <div class="max-w-6xl mx-auto px-6 py-12 fade-in-up">
+    <!-- Header -->
+    <div class="text-center mb-10">
+      <h1 class="text-5xl font-bold text-[#8e8577]">Contact Us</h1>
+      <p class="text-lg mt-2 text-gray-600">We’d love to hear from you. Fill out the form and we’ll get back soon.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-10">
+      <!-- Left: Form -->
+      <div class="md:col-span-2 space-y-4">
+        <form method="post" class="space-y-6">
+          {% csrf_token %}
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input type="text" name="name" placeholder="Name *" class="border border-gray-300 px-4 py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8e8577]" required>
+            <input type="text" name="phone_number" placeholder="Phone Number" class="border border-gray-300 px-4 py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8e8577]" required>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input type="email" name="email" placeholder="Email *" class="border border-gray-300 px-4 py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8e8577]" required>
+          </div>
+
+          <textarea name="question" rows="5" placeholder="Question *" class="w-full border border-gray-300 px-4 py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8e8577]" required></textarea>
+
+          <button type="submit" class="bg-[#8e8577] hover:bg-[#6f6659] text-white px-8 py-3 rounded-full transition duration-300">
+            Submit
+          </button>
+        </form>
+      </div>
+
+      <!-- Right: Info + Map -->
+      <div class="space-y-4">
+        <div class="bg-gray-50 p-6 rounded shadow-sm space-y-3">
+          <h3 class="font-bold text-xl">My Company</h3>
+          <p>📍 Plot No B-10, Vayusena Nagar,<br> Near Sandipani School, Wadi Road,<br> Dhaba, Nagpur</p>
+          <p>📞 <a href="tel:+918999415898" class="text-blue-700 hover:underline">+91 8999415898</a></p>
+          <p class="flex items-center gap-2">
+            <img src="{% static 'images/mail.svg' %}" alt="mail" class="w-5 h-5" />
+            <a href="mailto:sumitmorghade@gmail.com" class="text-blue-700 hover:underline">sumitmorghade@gmail.com</a>
+          </p> 
+       </div>
+
+        <!-- Google Map Embed -->
+  <iframe 
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3720.537542033535!2d79.0231122747182!3d21.17079478288611!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c115bc2ec9e9%3A0x39dc16666e4dea08!2sVision%20Architects%20%26%20Interior%20designer!5e0!3m2!1sen!2sin!4v1751523154679!5m2!1sen!2sin"
+    width="100%" 
+    height="200" 
+    style="border:0;" 
+    allowfullscreen="" 
+    loading="lazy" 
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/+918999415898" class="fixed bottom-6 right-6 bg-green-500 p-4 rounded-full shadow-md hover:bg-green-600 transition">
+    <img src="{% static 'images/whatsapp.svg' %}" class="w-6 h-6" alt="WhatsApp" />
+  </a>
+
+</body>
+</html>

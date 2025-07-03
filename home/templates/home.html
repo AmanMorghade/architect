@@ -1,0 +1,252 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <title>Vision Architect</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+  <style>
+  @keyframes fadeInLeft {
+    0% { opacity: 0; transform: translateX(-30px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-fade-in-left {
+    animation: fadeInLeft 1s ease-out forwards;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 1s ease-out forwards;
+  }
+
+  .delay-200 {
+    animation-delay: 0.2s;
+  }
+
+  @keyframes fancySwipeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(60px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.fancy-swipe-up {
+  animation: fancySwipeUp 0.7s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+{% comment %} city icon on home {% endcomment %}
+@keyframes diagonalFloat {
+  0%   { transform: translate(0, 0); }
+  50%  { transform: translate(50px, -50px); }
+  100% { transform: translate(0, 0); }
+}
+
+.animate-diagonal {
+  animation: diagonalFloat 2s ease-in-out infinite;
+}
+</style>
+</head>
+<body class="bg-white font-sans">
+
+  <!-- Navbar -->
+<nav class="fixed top-0 w-full z-50 flex items-center justify-between px-6 py-2 shadow-md bg-white ">
+    <!-- Logo -->
+    <div class="flex items-center space-x-2 pl-10">
+      <img src="#" alt="Logo" class="w-12 h-12 object-contain" />
+    
+
+    <!-- Navigation Links -->
+        <div class="hidden md:flex space-x-6 font-medium text-gray-700 font-serif" id="nav-links">
+            <a href="#home" class="hover:text-gray-900">Home</a>
+            <a href="#about" class="hover:text-gray-900">About Us</a>
+            <a href="#service" class="hover:text-gray-900">Services</a>
+            <a href="#" class="hover:text-gray-900">Success Stories</a>
+            <a href="#" class="hover:text-gray-900">Testimonial</a>
+        </div>   
+    </div>
+
+    <!-- Right Side -->
+    <div class="flex items-center space-x-6 pr-10">
+    <button id="menu-toggle" class="md:hidden text-gray-800">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+    </button>
+       
+      <a href="https://wa.me/+918999415898">
+        <span class="[&>svg]:h-9 [&>svg]:w-9 [&>svg]:fill-[#128c7e]">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 448 512">
+                <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+                <path
+                d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+            </svg>
+        </span>
+    </a>
+
+      <!-- Phone -->
+      <p class="text-md text-gray-700 hover:text-black">+918999415898</p>
+
+      <!-- Username -->
+      <!-- Contact Button -->
+      <a href="{% url "contact" %}" class="bg-gray-700 text-white px-4 py-2 rounded-full font-semibold hover:bg-gray-900">
+        Contact Us
+      </a>
+    </div>
+  </nav>
+
+  <!-- Home Section -->
+<section id="home" class="relative w-full h-[90vh] bg-cover bg-center mt-16" style="background-image: url({% static 'images/home_bg.jpg' %});">
+  <div class="absolute inset-0 bg-black bg-opacity-10"></div> <!-- Overlay -->
+
+  <!-- ✅ Moving SVG Over Image -->
+  <img src="{% static 'images/city.svg' %}" alt="Architect City"
+       class="absolute top-32 right-32 w-28 h-28 animate-diagonal z-20 opacity-20" />
+
+  <!-- Main Content -->
+  <div class="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
+    <h1 class="text-4xl md:text-6xl font-semibold leading-tight">
+      Architecture that<br>Inspires Living
+    </h1>
+    <a href="#" class="mt-6 bg-[#a59a89] text-white px-6 py-3 rounded-full text-lg font-medium hover:bg-[#8e8577]">
+      Discover more
+    </a>
+  </div>
+
+  <lottie-player 
+    src= {% static "Animation.json" %} 
+    background="transparent"  
+    speed="1"  
+    style="width: 150px; height: 150px;"  
+    loop  
+    autoplay>
+</lottie-player>
+</section>
+
+
+{% comment %} about us section {% endcomment %}
+{% comment %} <section id="about" class="h-screen w-full bg-[#f7f5f2] flex items-center -mb-32"> {% endcomment %}
+<section id="about" class="relative h-screen w-full bg-[#f7f5f2] flex items-center z-0">
+
+  <div class="max-w-7xl mx-auto px-6 flex flex-col-reverse md:flex-row items-center justify-between gap-12 h-full ">
+
+    <!-- Left Content -->
+    <div class="md:w-1/2 text-center md:text-left space-y-6">
+      <h2 class="text-5xl md:text-6xl font-extrabold text-[#a59a89] leading-tight">
+        <span class="text-[#8e8577]">Our</span> Approach
+      </h2>
+      <p class="text-gray-700 text-lg md:text-xl font-serif">
+        We take the time to understand your needs, style, and goals. Then, we use our creativity and experience 
+        to design spaces that are not only attractive but also comfortable and useful.
+      </p>
+      <p class="text-gray-700 text-lg md:text-xl font-serif">
+        Whether it’s a home, office, or any other space, we pay attention to every small detail to make sure it feels right for you. 
+        From start to finish, we’re with you at every step.
+      </p>
+      <p class="text-gray-700 text-lg md:text-xl font-serif">
+        We listen carefully, plan thoughtfully, and create designs that are inspiring, long-lasting, and truly yours.
+      </p>
+      <a href="#contact" class="inline-block mt-4 bg-[#8e8577] hover:bg-[#6f6659] text-white px-8 py-3 text-lg font-medium rounded-full transition duration-300">
+        Discover More
+      </a>
+    </div>
+
+    <!-- Right Image -->
+    <div class="md:w-1/2 flex justify-center">
+      <img src="{% static 'images/intro.svg' %}" alt="Design" class="w-[80%] max-w-[500px] md:max-w-[600px]" />
+    </div>
+
+  </div>
+
+</section>
+
+{% comment %} <div class="relative w-full overflow-hidden leading-[0] z-10 -mt-1">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path fill="#f7f5f2" fill-opacity="1"
+      d="M0,64L24,69.3C48,75,96,85,144,117.3C192,149,240,203,
+      288,224C336,245,384,235,432,213.3C480,192,528,160,576,160C624,
+      160,672,192,720,192C768,192,816,160,864,138.7C912,117,960,107,
+      1008,128C1056,149,1104,203,1152,202.7C1200,203,1248,149,1296,133.3C1344,
+      117,1392,139,1416,149.3L1440,160L1440,0L1416,0C1392,0,1344,0,1296,
+      0C1248,0,1200,0,1152,0C1104,0,1056,0,1008,0C960,0,912,0,
+      864,0C816,0,768,0,720,0C672,0,624,0,576,0C528,0,480,0,
+      432,0C384,0,336,0,288,0C240,0,192,0,144,0C96,0,48,0,24,0L0,0Z">
+    </path>
+  </svg>
+</div> {% endcomment %}
+
+{% include "section/service.html" %}
+{% include "section/success.html" %}
+
+
+<script>
+ 
+  document.getElementById('menu-toggle').addEventListener('click', function () {
+    document.getElementById('nav-links').classList.toggle('hidden');
+    document.getElementById('nav-links').classList.toggle('flex');
+    document.getElementById('nav-links').classList.toggle('flex-col');
+    document.getElementById('nav-links').classList.toggle('space-y-2');
+    document.getElementById('nav-links').classList.toggle('text-center');
+    document.getElementById('nav-links').classList.toggle('pt-4');
+  });
+
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href');
+      const target = document.querySelector(targetId);
+
+      // Remove animation classes
+      document.querySelectorAll('section').forEach(sec => {
+        sec.classList.remove('fancy-swipe-up');
+      });
+
+      // Add animation after scrolling
+      setTimeout(() => {
+        target.classList.add('fancy-swipe-up');
+      }, 100);
+    });
+  });
+
+
+const carouselInner = document.getElementById('carouselInner');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const cardWidth = carouselInner.children[0].offsetWidth;
+  let currentScroll = 0;
+
+  function scrollNext() {
+    const maxScroll = carouselInner.scrollWidth - carouselInner.clientWidth;
+    currentScroll = currentScroll + cardWidth > maxScroll ? 0 : currentScroll + cardWidth;
+    carouselInner.style.transform = `translateX(-${currentScroll}px)`;
+  }
+
+  function scrollPrev() {
+    const maxScroll = carouselInner.scrollWidth - carouselInner.clientWidth;
+    currentScroll = currentScroll - cardWidth < 0 ? maxScroll : currentScroll - cardWidth;
+    carouselInner.style.transform = `translateX(-${currentScroll}px)`;
+  }
+
+  nextBtn.addEventListener('click', scrollNext);
+  prevBtn.addEventListener('click', scrollPrev);
+
+  // Auto-scroll every 4 seconds
+  setInterval(scrollNext, 4000);
+
+
+</script>
+
+</body>
+</html>
