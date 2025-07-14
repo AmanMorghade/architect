@@ -1,102 +1,215 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>Vision Architect</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+  <style>
+  @keyframes fadeInLeft {
+    0% { opacity: 0; transform: translateX(-30px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-fade-in-left {
+    animation: fadeInLeft 1s ease-out forwards;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 1s ease-out forwards;
+  }
+
+  .delay-200 {
+    animation-delay: 0.2s;
+  }
+
+  @keyframes fancySwipeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(60px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.fancy-swipe-up {
+  animation: fancySwipeUp 0.7s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+{% comment %} city icon on home {% endcomment %}
+@keyframes diagonalFloat {
+  0%   { transform: translate(0, 0); }
+  50%  { transform: translate(50px, -50px); }
+  100% { transform: translate(0, 0); }
+}
+
+.animate-diagonal {
+  animation: diagonalFloat 2s ease-in-out infinite;
+}
+</style>
 </head>
 <body class="bg-white font-sans">
 
+  <!-- Navbar -->
 <!-- Navbar -->
-<nav class="flex items-center justify-between px-6 py-2 shadow-md bg-white z-10 relative">
-  <!-- Logo -->
-  <div class="flex items-center space-x-2 pl-10">
-    <img src="#" alt="Logo" class="w-12 h-12 object-contain" />
+<nav class="fixed top-0 w-full z-50 flex items-center justify-between px-4 md:px-6 py-3 shadow-md bg-white">
+  <!-- Logo & Links Wrapper -->
+  <div class="flex items-center justify-between w-full">
+    <!-- Logo -->
+    <div class="flex items-center space-x-2">
+      <img src="#" alt="Logo" class="w-10 h-10 object-contain" />
+    </div>
+
+    <!-- Hamburger Menu -->
+    <button id="menu-toggle" class="md:hidden text-gray-800 focus:outline-none">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
   </div>
 
-  <!-- Menu Button (Mobile Only) -->
-  <button id="menu-toggle" class="md:hidden text-gray-800">
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-        d="M4 6h16M4 12h16M4 18h16" />
-    </svg>
-  </button>
-
-  <!-- Right Side (Desktop only) -->
-  <div class="hidden md:flex items-center space-x-6 pr-10">
-    <a href="https://wa.me/+918999415898">
-      <span class="[&>svg]:h-7 [&>svg]:w-7 [&>svg]:fill-[#128c7e]">
-        <!-- WhatsApp Icon -->
-        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 448 512">
-          <path
-            d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 
-            0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 
-            106.1 27h.1c122.3 0 224.1-99.6 
-            224.1-222 0-59.3-25.2-115-67.1-157zm-157 
-            341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 
-            18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 
-            0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 
-            19.2 130.4 54.1 34.8 34.9 56.2 81.2 
-            56.1 130.5 0 101.8-84.9 184.6-186.6 
-            184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 
-            2.8-3.7 5.6-14.3 18-17.6 
-            21.8-3.2 3.7-6.5 4.2-12 
-            1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 
-            5.7-9.1 16.3-30.3 1.8-3.7 
-            .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 
-            0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 
-            46.3 0 27.3 19.9 53.7 22.6 
-            57.4 2.8 3.7 39.1 59.7 94.8 
-            83.8 35.2 15.2 49 16.5 66.6 
-            13.9 10.7-1.6 32.8-13.4 
-            37.4-26.4 4.6-13 4.6-24.1 
-            3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
-        </svg>
-      </span>
-    </a>
-    <p class="text-md text-gray-700 hover:text-black">+918999415898</p>
-    <a href="#" class="bg-gray-700 text-white px-4 py-2 rounded-full font-semibold hover:bg-gray-900">
+  <!-- Navigation Links -->
+  <div id="nav-links" class="hidden md:flex flex-col md:flex-row md:space-x-6 mt-3 md:mt-0 font-medium text-gray-700 font-serif w-full md:w-auto text-center">
+    <a href="#home" class="block py-2 md:py-0 hover:text-gray-900">Home</a>
+    <a href="#about" class="block py-2 md:py-0 hover:text-gray-900">About Us</a>
+    <a href="#service" class="block py-2 md:py-0 hover:text-gray-900">Services</a>
+    <a href="#success" class="block py-2 md:py-0 hover:text-gray-900">Success Stories</a>
+    <a href="#" class="block py-2 md:py-0 hover:text-gray-900">Testimonial</a>
+    <a href="{% url 'contact' %}" class="block py-2 md:py-0 bg-gray-700 text-white px-4 py-2 rounded-full font-semibold hover:bg-gray-900 w-fit mx-auto md:mx-0">
       Contact Us
     </a>
   </div>
 </nav>
 
-<!-- ✅ Navigation Links (Outside nav for mobile toggle) -->
-<div class="hidden md:flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6 font-medium text-gray-700 text-center pt-4 md:pt-0 justify-center" id="nav-links">
-  <a href="#home" class="hover:text-gray-900">Home</a>
-  <a href="#" class="hover:text-gray-900">Services</a>
-  <a href="#" class="hover:text-gray-900">Success Stories</a>
-  <a href="#" class="hover:text-gray-900">About Us</a>
-  <a href="#" class="hover:text-gray-900">Testimonial</a>
-</div>
 
-<!-- Hero Section -->
-<section id="home" class="relative w-full h-[90vh] bg-cover bg-center" style="background-image: url({% static 'images/home_bg.jpg' %});">
-  <div class="absolute inset-0 bg-black bg-opacity-10"></div> <!-- Overlay -->
+  <!-- Home Section -->
+<section id="home" class="relative w-full min-h-[90vh] bg-cover bg-center mt-16 flex items-center justify-center text-center" style="background-image: url({% static 'images/home_bg.jpg' %});">
+  <div class="absolute inset-0 bg-black bg-opacity-10"></div>
 
-  <div class="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
-    <h1 class="text-4xl md:text-6xl font-semibold leading-tight">
+  <img src="{% static 'images/city.svg' %}" alt="Architect City"
+       class="absolute top-20 right-4 sm:right-10 w-20 sm:w-28 h-20 sm:h-28 animate-diagonal z-20 opacity-20" />
+
+  <div class="relative z-10 px-4 sm:px-8 py-10">
+    <h1 class="text-3xl sm:text-5xl md:text-6xl font-semibold text-white leading-tight">
       Architecture that<br>Inspires Living
     </h1>
-    <a href="#" class="mt-6 bg-[#a59a89] text-white px-6 py-3 rounded-full text-lg font-medium hover:bg-[#8e8577]">
+    <a href="#about" class="mt-6 inline-block bg-[#a59a89] text-white px-6 py-3 rounded-full text-base sm:text-lg font-medium hover:bg-[#8e8577]">
       Discover more
     </a>
   </div>
+
+  <lottie-player 
+    src="{% static 'images/Animation.json' %}" 
+    background="transparent"  
+    speed="1"  
+    class="z-50"
+    style="width: 120px; height: 120px;"  
+    loop autoplay>
+  </lottie-player>
 </section>
 
-<!-- Toggle Script -->
+
+{% comment %} about us section {% endcomment %}
+{% comment %} <section id="about" class="h-screen w-full bg-[#f7f5f2] flex items-center -mb-32"> {% endcomment %}
+<section id="about" class="relative min-h-[90vh] w-full bg-[#f7f5f2] flex items-center z-0 py-12 sm:py-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col-reverse md:flex-row items-center justify-between gap-12">
+
+    <!-- Left Content -->
+    <div class="w-full md:w-1/2 text-center md:text-left space-y-4 sm:space-y-6">
+      <h2 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#a59a89] leading-tight">
+        <span class="text-[#8e8577]">Our</span> Approach
+      </h2>
+      <p class="text-gray-700 text-base sm:text-lg md:text-xl font-serif">
+        We take the time to understand your needs, style, and goals...
+      </p>
+      <a href="#contact" class="inline-block mt-4 bg-[#8e8577] hover:bg-[#6f6659] text-white px-6 py-3 text-sm sm:text-base rounded-full transition duration-300">
+        Discover More
+      </a>
+    </div>
+
+    <!-- Right Image -->
+    <div class="w-full md:w-1/2 flex justify-center">
+      <img src="{% static 'images/intro.svg' %}" alt="Design" class="w-4/5 max-w-[400px] md:max-w-[500px]" />
+    </div>
+  </div>
+</section>
+
+
+{% include "section/service.html" %}
+{% include "section/success.html" %}
+
+
 <script>
+{% comment %} nav bar {% endcomment %}
   document.getElementById('menu-toggle').addEventListener('click', function () {
     const nav = document.getElementById('nav-links');
     nav.classList.toggle('hidden');
     nav.classList.toggle('flex');
     nav.classList.toggle('flex-col');
-    nav.classList.toggle('space-y-2');
-    nav.classList.toggle('text-center');
-    nav.classList.toggle('pt-4');
   });
+
+
+  document.getElementById('menu-toggle').addEventListener('click', function () {
+    document.getElementById('nav-links').classList.toggle('hidden');
+    document.getElementById('nav-links').classList.toggle('flex');
+    document.getElementById('nav-links').classList.toggle('flex-col');
+    document.getElementById('nav-links').classList.toggle('space-y-2');
+    document.getElementById('nav-links').classList.toggle('text-center');
+    document.getElementById('nav-links').classList.toggle('pt-4');
+  });
+
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href');
+      const target = document.querySelector(targetId);
+
+      // Remove animation classes
+      document.querySelectorAll('section').forEach(sec => {
+        sec.classList.remove('fancy-swipe-up');
+      });
+
+      // Add animation after scrolling
+      setTimeout(() => {
+        target.classList.add('fancy-swipe-up');
+      }, 100);
+    });
+  });
+
+
+const carouselInner = document.getElementById('carouselInner');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const cardWidth = carouselInner.children[0].offsetWidth;
+  let currentScroll = 0;
+
+  function scrollNext() {
+    const maxScroll = carouselInner.scrollWidth - carouselInner.clientWidth;
+    currentScroll = currentScroll + cardWidth > maxScroll ? 0 : currentScroll + cardWidth;
+    carouselInner.style.transform = `translateX(-${currentScroll}px)`;
+  }
+
+  function scrollPrev() {
+    const maxScroll = carouselInner.scrollWidth - carouselInner.clientWidth;
+    currentScroll = currentScroll - cardWidth < 0 ? maxScroll : currentScroll - cardWidth;
+    carouselInner.style.transform = `translateX(-${currentScroll}px)`;
+  }
+
+  nextBtn.addEventListener('click', scrollNext);
+  prevBtn.addEventListener('click', scrollPrev);
+
+  // Auto-scroll every 4 seconds
+  setInterval(scrollNext, 4000);
+
+
 </script>
 
 </body>
